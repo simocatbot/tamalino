@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <style>
+      input[type=submit] {
+        width: 50%;
+        background-color: rgb(20, 201, 162);
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      input[type=submit]:hover {
+        background-color: #f03ee7ce;
+      }
+      
+      #form {
+        background-color: #f2f2f2;
+        padding: 20px;
+        width: 100%;
+        /* border: 1px solid #0b2183; */
+        text-align: center;
+        }
+      
+    .container-fluid{
+            background-color: rgb(20, 201, 162);
+            /* min-height: 150px; */
+        }
+    img{
+        max-width: 150px;
+        max-height: 150px;
+    }
+    .col-sm{
+        align-content: center;
+        margin: 0 auto;
+    }
+    #red{
+        /* border: 1px solid black; */
+    }
+    #black{
+        /* border: 1px solid black; */
+    }
+    #title{
+        /* border: 1px solid black; */
+        text-align: center;
+        font-size: xx-large;
+        font-weight: 200;
+        font-style: italic;
+        font-family: 'Courier New', Courier, monospace;
+        color: black;
+    }
+
+      .playerbox{
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        /* border: 1px solid #73AD21; */
+      }
+
+      input[list="player"]{
+        width: 30%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        /* border: 1px solid #0a199b; */
+      }
+      input[id="score"]{
+        width: 30%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        /* border: 1px solid #0a199b; */
+      }
+      input[id="player"]{
+        width: 30%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        /* border: 1px solid #0a199b; */
+      }
+
+      body {
+          background-color: #f2f2f2;
+      }
+    </style>
+  <head>
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class ="col my-auto">
+            <div class="text-center" id="red">
+              <a href="/home">
+                <img src="{{ url_for('static', filename='red.png') }}" alt="redKing" class = "img-responsive center-block">
+              </a>  
+            </div>
+        </div>
+
+        <div class ="col-sm align-self-center" id="title">CARICA LA PARTITA</div>
+
+        <div class ="col-sm align-self-center">
+            <div class ="text-center" id="black">
+              <a href="/home">
+                <img src="{{ url_for('static', filename='black.png') }}" alt="blackKing" class = "img-responsive">
+              </a>  
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div id ="form">
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+
+        <div class="playerbox">
+          <input list = "player" name = 'player1' placeholder="Scegli o scrivi il nome">
+          <datalist id="player">
+            <option value="Anita">
+            <option value="Bea">
+            <option value="Bimo">
+            <option value="Bob">
+            <option value="Cacio">
+            <option value="Capi">
+            <option value="Carlita">
+            <option value="Coach">
+            <option value="Cristina Carabelli">
+            <option value="Dalla">
+            <option value="Disa">
+            <option value="Divo">
+            <option value="Emma">
+            <option value="GG">
+            <option value="Gibo">
+            <option value="Giulia Vita">
+            <option value="Lollo">
+            <option value="Marika">
+            <option value="Marzia">
+            <option value="Pari">
+            <option value="Rioni">
+            <option value="Romolo">
+            <option value="Santini">
+            <option value="Sara Peruz">
+            <option value="Sehn">
+            <option value="Simocat">
+            <option value="Simone Bertoni">
+            <option value="Zambo">
+          </datalist>
+          <input type = "text" id="score", name="score1", placeholder="score1">
+        </div>
+
+        <div class="playerbox">
+          <input list = "player" name = 'player2' placeholder="Pozioni">
+          <datalist id="player">
+            <option value="Anita">
+            <option value="Bea">
+            <option value="Bimo">
+            <option value="Bob">
+            <option value="Cacio">
+            <option value="Capi">
+            <option value="Carlita">
+            <option value="Coach">
+            <option value="Cristina Carabelli">
+            <option value="Dalla">
+            <option value="Disa">
+            <option value="Divo">
+            <option value="Emma">
+            <option value="GG">
+            <option value="Gibo">
+            <option value="Giulia Vita">
+            <option value="Lollo">
+            <option value="Marika">
+            <option value="Marzia">
+            <option value="Pari">
+            <option value="Rioni">
+            <option value="Romolo">
+            <option value="Santini">
+            <option value="Sara Peruz">
+            <option value="Sehn">
+            <option value="Simocat">
+            <option value="Simone Bertoni">
+            <option value="Zambo">
+          </datalist>
+          <input type = "text" id="score", name="score2", placeholder="score2">
+        </div>
+
+        <div class="playerbox">
+          <input list = "player" name = 'player3' placeholder="Two towers">
+          <datalist id="player">
+            <option value="Anita">
+            <option value="Bea">
+            <option value="Bimo">
+            <option value="Bob">
+            <option value="Cacio">
+            <option value="Capi">
+            <option value="Carlita">
+            <option value="Coach">
+            <option value="Cristina Carabelli">
+            <option value="Dalla">
+            <option value="Disa">
+            <option value="Divo">
+            <option value="Emma">
+            <option value="GG">
+            <option value="Gibo">
+            <option value="Giulia Vita">
+            <option value="Lollo">
+            <option value="Marika">
+            <option value="Marzia">
+            <option value="Pari">
+            <option value="Rioni">
+            <option value="Romolo">
+            <option value="Santini">
+            <option value="Sara Peruz">
+            <option value="Sehn">
+            <option value="Simocat">
+            <option value="Simone Bertoni">
+            <option value="Zambo">
+          </datalist>
+          <input type = "text" id="score", name="score3", placeholder="score3">
+        </div>
+
+        <div class="playerbox">
+          <input list = "player" name = 'player4' placeholder="Sveltina">
+          <datalist id="player">
+            <option value="Anita">
+            <option value="Bea">
+            <option value="Bimo">
+            <option value="Bob">
+            <option value="Cacio">
+            <option value="Capi">
+            <option value="Carlita">
+            <option value="Coach">
+            <option value="Cristina Carabelli">
+            <option value="Dalla">
+            <option value="Disa">
+            <option value="Divo">
+            <option value="Emma">
+            <option value="GG">
+            <option value="Gibo">
+            <option value="Giulia Vita">
+            <option value="Lollo">
+            <option value="Marika">
+            <option value="Marzia">
+            <option value="Pari">
+            <option value="Rioni">
+            <option value="Romolo">
+            <option value="Santini">
+            <option value="Sara Peruz">
+            <option value="Sehn">
+            <option value="Simocat">
+            <option value="Simone Bertoni">
+            <option value="Zambo">
+          </datalist>
+          <input type = "text" id="score", name="score4", placeholder="score4">
+        </div>
+
+        <div class="playerbox">
+          <input list = "player" name = 'player5' placeholder="Irony">
+          <datalist id="player">
+            <option value="Anita">
+            <option value="Bea">
+            <option value="Bimo">
+            <option value="Bob">
+            <option value="Cacio">
+            <option value="Capi">
+            <option value="Carlita">
+            <option value="Coach">
+            <option value="Cristina Carabelli">
+            <option value="Dalla">
+            <option value="Disa">
+            <option value="Divo">
+            <option value="Emma">
+            <option value="GG">
+            <option value="Gibo">
+            <option value="Giulia Vita">
+            <option value="Lollo">
+            <option value="Marika">
+            <option value="Marzia">
+            <option value="Pari">
+            <option value="Rioni">
+            <option value="Romolo">
+            <option value="Santini">
+            <option value="Sara Peruz">
+            <option value="Sehn">
+            <option value="Simocat">
+            <option value="Simone Bertoni">
+            <option value="Zambo">
+          </datalist>
+          <input type = "text" id="score", name="score5", placeholder="score5">
+        </div>
+
+        <div class="playerbox">
+          <input list = "player" name = 'player6' placeholder="Coppiona">
+          <datalist id="player">
+            <option value="Anita">
+            <option value="Bea">
+            <option value="Bimo">
+            <option value="Bob">
+            <option value="Cacio">
+            <option value="Capi">
+            <option value="Carlita">
+            <option value="Coach">
+            <option value="Cristina Carabelli">
+            <option value="Dalla">
+            <option value="Disa">
+            <option value="Divo">
+            <option value="Emma">
+            <option value="GG">
+            <option value="Gibo">
+            <option value="Giulia Vita">
+            <option value="Lollo">
+            <option value="Marika">
+            <option value="Marzia">
+            <option value="Pari">
+            <option value="Rioni">
+            <option value="Romolo">
+            <option value="Santini">
+            <option value="Sara Peruz">
+            <option value="Sehn">
+            <option value="Simocat">
+            <option value="Simone Bertoni">
+            <option value="Zambo">
+          </datalist>
+          <input type = "text" id="score", name="score6", placeholder="score6">
+        </div>
+
+        <input type="submit" value="Carica nel Palmares">
+
+      </form>
+    </div>
+
+  </body>
+
+</html>

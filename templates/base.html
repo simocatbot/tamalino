@@ -1,0 +1,164 @@
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" shrinkto>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Benvenuto nel Palmares!</title>
+    <style>
+      body{
+        height: 100vh;
+        margin: 0;
+        display:flex;
+        flex-direction:column;
+      }
+      *{
+        font-family: 'Courier New', Courier, monospace
+      }
+      .site-footer
+      {
+        background-color:#26272b;
+        font-size: 1.75vh;
+        line-height:24px;
+        color:#737373;
+        min-height: auto;
+        margin-top: auto;
+      }
+      .site-footer hr
+      {
+        border-top-color:#bbb;
+        opacity:0.5
+      }
+      .site-footer hr.small
+      {
+        margin:20px 0
+      }
+      .site-footer h6
+      {
+        color:#fff;
+        font-size:1.75vh;
+        text-transform:uppercase;
+        margin-top:5px;
+        letter-spacing:2px;
+      }
+      .site-footer a
+      {
+        color:#737373;
+      }
+      .site-footer a:hover
+      {
+        color:#3366cc;
+        text-decoration:none;
+      }
+      .footer-links
+      {
+        padding-left:0;
+        list-style:none
+      }
+      .footer-links li
+      {
+        display:block
+      }
+      .footer-links a
+      {
+        color:#737373
+      }
+      .footer-links a:active,.footer-links a:focus,.footer-links a:hover
+      {
+        color:#3366cc;
+        text-decoration:none;
+      }
+      .footer-links.inline li
+      {
+        display:inline-block
+      }
+
+      .copyright-text
+      {
+        margin:0
+      }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar-expand-lg navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="/home">
+        <img src="{{ url_for('static', filename='red.png') }}" width="40" height="40" alt="" loading="lazy">
+        TAMALO
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/consulta"> Consulta il palmares </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/upload">Carica una partita </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <p class="navbar-text">
+              {{ session.user }} 
+            |</p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <br/><br/><br/>
+
+
+    {% block content %}{% endblock %}
+
+    <br/><br/><br/>
+
+    <!-- Site footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>Tamalo</h6>
+            <p class="text-justify">Il tamalo non è solamente un gioco di carte, ma è una filosofia di vita, che guida gli animi dei giocatori attraverso l'universo sensoriale alla ricerca della verità.</p>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>Links</h6>
+            <ul class="footer-links">
+              <li><a href="https://it.wikipedia.org/wiki/Tamalo" target="_blank">Wikipedia</a></li>
+              <li><a href="https://www.instagram.com/comitato_tamalo/" target="_blank">Instagram</a></li>
+              <li><a href="mailto: tamalo.aderthad@gmail.com">Email Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by 
+          <a href="#">Comitato di Tamalo</a>.
+            </p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>

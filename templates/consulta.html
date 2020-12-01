@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .wrapper{
+            /* border: 3px solid blue; */
+            padding: 20px;
+            width: 85%;
+            margin: auto;
+        }
+        .box{
+            float: left;
+            width: 50%;
+            /* border: 1px solid green; */
+            text-align: center;
+            overflow-x:auto;
+        }
+        .dataframe{
+            float: left;
+            text-align:center;
+            border-collapse: collapse;
+            width: 100%;
+            /* border: 1px solid green; */
+        }
+        .dataframe td, .dataframe th {
+        border: 1px solid #ddd;
+        padding: 6px;
+        }
+        .dataframe tr:nth-child(even){background-color: #f2f2f2;}
+
+        .dataframe tr:hover {background-color: #ddd;}
+
+        .dataframe th {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            text-align: center;
+            background-color: #31303f;
+            color: white;
+            }
+        @media screen and (max-width: 640px) {
+            .box {
+                overflow-x: auto;
+                overflow-y: auto;
+                display: block;
+            }
+        }
+        .boxCol {
+            float: left;
+            width: 100%;
+            /* border: 1px solid green; */
+            text-align: center;
+            overflow-x: auto;
+        }
+        h1{
+            text-align: center;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<div class='wrapper'>
+    <h1>Classifica ufficiale</h1>
+    <div class="box">
+        <div class="dataframe">
+            {{ tables[0]|safe }}
+        </div>
+    </div>
+    <div class="box">
+        <img src="{{ url_for('static', filename='coppona.png') }}" alt="coppa" height=100% width=auto >
+    </div>
+</div>
+
+<br><br><br><br>
+
+<div class="wrapper">
+    <h1>Ricerca partite per data</h1>
+    <div class="boxCol">
+        <form action="/consulta" method="POST" enctype="multipart/form-data">
+
+            <label for="start">Da:</label>
+            <input type="date" id="start" name="startDate" value="2018-12-29" min="1900-01-01" max="2100-12-31">
+            <label for="end">A:</label>
+            <input type="date" id="end" name="endDate" value="2020-11-20" min="1900-01-01" max="2100-12-31">
+
+            <input type="submit" value="Cerca nel Palmares">
+        </form>
+    </div>
+    <div class="boxCol">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert" style="width: 75%; margin:auto;">
+                        <span>{{ message }}</span>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="dataframe">
+            {{ tables[1]|safe }}
+        </div>
+    </div>
+</div>
+
+</body>
+
+{% endblock %}
